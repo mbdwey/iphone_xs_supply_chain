@@ -152,7 +152,7 @@ class Model:
 		# print('----policy improvement')
 		score = np.zeros((self._N_act, self._N_a*self._N_b))
 		V_next = np.tile(self._V, (self._N_a*self._N_b,1))
-		for act in xrange(self._N_act):
+		for act in range(self._N_act):
 			score[act] = np.sum(self._P_all[act]*(self._R_all[act]+self._gamma*V_next), axis=1)
 		new_policy = np.argmax(score, axis=0)
 		# from range 0~10 to -N_move~+N_move
@@ -172,14 +172,14 @@ class Model:
 		### can be better --> parallel programming
 		tmp_P = np.zeros((self._N_act, self._N_a, self._N_b, self._N_a, self._N_b), dtype=FLOAT_DATA_TYPE)
 		tmp_R = np.zeros((self._N_act, self._N_a, self._N_b, self._N_a, self._N_b), dtype=FLOAT_DATA_TYPE)
-		for s_a in xrange(self._N_a):
+		for s_a in range(self._N_a):
 			start3 = time.time() ### timer
-			for s_b in xrange(self._N_b):
+			for s_b in range(self._N_b):
 				# start2 = time.time() ### timer
-				for s_a_next in xrange(self._N_a):
+				for s_a_next in range(self._N_a):
 					# start1 = time.time() ### timer
-					for s_b_next in xrange(self._N_b):
-						for act in xrange(self._N_act):
+					for s_b_next in range(self._N_b):
+						for act in range(self._N_act):
 							tmp_P[act, s_a, s_b, s_a_next, s_b_next], \
 									tmp_R[act, s_a, s_b, s_a_next, s_b_next] \
 											= self.compute(s_a, s_b, s_a_next, s_b_next, act)					# end1 = time.time() ### timer
@@ -227,7 +227,7 @@ class Model:
 		### go through all possibility from s_a(today) to s_a_next(tommorrow) with act done overnight
 		# in location a
 		r_a = p_a = 0
-		for a_rent in xrange(a_max_rent,-1,-1): # loop from a_max_rent to 0
+		for a_rent in range(a_max_rent,-1,-1): # loop from a_max_rent to 0
 			a_return = a_rent + a_diff
 			# number of cars returned to location a is not allowed to be negative
 			if a_return<0:
@@ -237,7 +237,7 @@ class Model:
 			p_a = p_a + tmp
 		# in location b
 		r_b = p_b = 0
-		for b_rent in xrange(b_max_rent,-1,-1): # loop from b_max_rent to 0
+		for b_rent in range(b_max_rent,-1,-1): # loop from b_max_rent to 0
 			b_return = b_rent + b_diff
 			# number of cars returned to location a is not allowed to be negative
 			if b_return<0:
