@@ -1,3 +1,9 @@
+################################
+# Mohamed Abu Badawi
+# Acadmic Code: 202301539
+# Software Engineering Master - First Year (2023/2024)
+################################
+
 # python 2/3 compatibility
 from __future__ import absolute_import
 from __future__ import division
